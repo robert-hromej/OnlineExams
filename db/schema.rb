@@ -42,12 +42,6 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
 
   add_index "exam_categories", ["owner_id"], :name => "index_exam_categories_on_owner_id"
 
-  create_table "exam_levels", :force => true do |t|
-    t.integer  "level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "exam_questions", :force => true do |t|
     t.integer  "exam_id",     :null => false
     t.integer  "question_id", :null => false
@@ -56,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   end
 
   create_table "exam_types", :force => true do |t|
-    t.integer  "exam_level_id",                     :null => false
+    t.string   "name",                              :null => false
     t.integer  "exam_category_id",                  :null => false
     t.integer  "owner_id",                          :null => false
     t.integer  "questions_limit",  :default => 16,  :null => false
@@ -66,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   end
 
   add_index "exam_types", ["exam_category_id"], :name => "index_exam_types_on_exam_category_id"
-  add_index "exam_types", ["exam_level_id"], :name => "index_exam_types_on_exam_level_id"
   add_index "exam_types", ["owner_id"], :name => "index_exam_types_on_owner_id"
 
   create_table "exams", :force => true do |t|
@@ -90,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   add_index "questions", ["exam_type_id"], :name => "index_questions_on_exam_type_id"
   add_index "questions", ["owner_id"], :name => "index_questions_on_owner_id"
 
-  create_table "users", :force => true do |t|
+  create_table "user", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
@@ -107,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
     t.boolean  "admin",                                 :default => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "user", ["email"], :name => "index_user_on_email", :unique => true
+  add_index "user", ["reset_password_token"], :name => "index_user_on_reset_password_token", :unique => true
 
 end

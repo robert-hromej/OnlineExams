@@ -1,0 +1,16 @@
+%header
+  -#= link_to logo, root_path
+  %nav.round
+    %ul
+      %li= link_to "Home", root_path
+      - if user_signed_in?
+        -if current_user.has_admin?
+          %li.red_item= link_to('Administration', admin_index_path)
+        %li= link_to "Profile", current_user
+        %li= link_to('Edit account', edit_user_registration_path)
+      %li= link_to "Help", help_path
+      - if user_signed_in?
+        %li= link_to('Logout', destroy_user_session_path)
+      - else
+        %li= link_to('Sign up', new_user_registration_path)
+        %li= link_to('Login', new_user_session_path)

@@ -1,14 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc6'
-#gem 'rails', '3.0.10'
 
 group :assets do
   gem 'sass-rails', "~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'uglifier'
-  ##gem 'win32-open3'
-  #gem 'win32-open3-19'
 end
 
 gem 'mysql'

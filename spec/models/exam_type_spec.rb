@@ -5,12 +5,13 @@ describe ExamType do
 end
 
 
+
 # == Schema Information
 #
 # Table name: exam_types
 #
 #  id               :integer(4)      not null, primary key
-#  exam_level_id    :integer(4)      not null
+#  name             :string(255)     not null
 #  exam_category_id :integer(4)      not null
 #  owner_id         :integer(4)      not null
 #  questions_limit  :integer(4)      default(16), not null

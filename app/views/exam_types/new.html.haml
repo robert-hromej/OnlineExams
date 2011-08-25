@@ -1,0 +1,19 @@
+= form_for(@exam_type, :url => exam_category_exam_types_path(@exam_type.exam_category_id)) do |f|
+  = f.label :name
+  %br
+  = f.text_field :name
+  %br
+
+  = f.label :questions_limit
+  %br
+  = f.text_field :questions_limit
+  %br
+
+  = f.label :time_limit
+  %br
+  = f.text_field :time_limit
+  %br
+
+  = f.submit "Create"
+
+on this page you can create new exam type

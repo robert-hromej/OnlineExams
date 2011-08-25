@@ -1,10 +1,26 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'First User', :email => 'user@test.com', :password => 'please', :password_confirmation => 'please'
-puts 'New user created: ' << user.name
+
+User.destroy_all
+ExamCategory.destroy_all
+ExamType.destroy_all
+
+admin = User.create!(:name => 'admin', :email => 'admin@example.com',
+                     :password => 'password', :password_confirmation => 'password')
+admin.admin = true
+admin.save
+
+i_am = User.create!(:name => 'Robert Hromej', :email => 'robert.hromej@gmail.com',
+                    :password => 'password', :password_confirmation => 'password')
+exam_categories = []
+%w[Ruby Java C++ C# HTML CSS RubyOnRails JavaScript MySQL Ajax JQuery Prototype SCSS ActiveRecord].each do |category|
+  exam_categories << ExamCategory.create!(:name => category, :owner => admin)
+end
+
+exam_categories.each do |exam_category|
+  max_level = rand(5)+3
+  max_level.times do |i|
+    ExamType.create!(:name => "#{exam_category.name} core(#{i+1} level)",
+                     :category => exam_category,
+                     :owner => admin)
+  end
+end
+

@@ -100,11 +100,24 @@ describe User do
 
   end
 
+  describe "relationships" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+      @exam_categories
+      6.times do |i|
+        @exam_categories << Factory(:exam_category, :owner => @user, :name => "test category #{i}")
+      end
+
+    end
+
+  end
+
 end
 
 # == Schema Information
 #
-# Table name: users
+# Table name: user
 #
 #  id                     :integer(4)      not null, primary key
 #  email                  :string(255)     default(""), not null

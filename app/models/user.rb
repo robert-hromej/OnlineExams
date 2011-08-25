@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  set_table_name :user
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -22,7 +24,7 @@ end
 
 # == Schema Information
 #
-# Table name: users
+# Table name: user
 #
 #  id                     :integer(4)      not null, primary key
 #  email                  :string(255)     default(""), not null

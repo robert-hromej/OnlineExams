@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe UserController do
 
   before (:each) do
     @user = Factory(:user)

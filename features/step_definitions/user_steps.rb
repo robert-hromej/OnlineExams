@@ -25,7 +25,7 @@ Given /^I am signed up as "(.*)\/(.*)"$/ do |email, password|
 end
 
 Then /^I sign out$/ do
-  visit('/users/sign_out')
+  visit('/user/sign_out')
 end
 
 Given /^I am logout$/ do

@@ -12,10 +12,10 @@ module NavigationHelpers
         '/'
 
       when /the sign up page/
-        '/users/sign_up'
+        '/user/sign_up'
 
       when /the sign in page/
-        '/users/sign_in'
+        '/user/sign_in'
 
       when /the user manager page/
         '/admin/user_manager'
