@@ -23,11 +23,11 @@ module NavigationHelpers
       when /the new Exam Category page/
         '/category/new'
 
-        # Add more mappings here.
-        # Here is an example that pulls values out of the Regexp:
-        #
-        #   when /^(.*)'s profile page$/i
-        #     user_profile_path(User.find_by_login($1))
+      # Add more mappings here.
+      # Here is an example that pulls values out of the Regexp:
+      #
+      #   when /^(.*)'s profile page$/i
+      #     user_profile_path(User.find_by_login($1))
 
       else
         begin

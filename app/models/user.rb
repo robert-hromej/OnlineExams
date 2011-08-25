@@ -6,7 +6,19 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+
+  has_many :exam_categories, :foreign_key => "owner_id"
+  has_many :exam_types, :foreign_key => "owner_id"
+  has_many :questions, :foreign_key => "owner_id"
+  has_many :exams
+  has_many :access_levels
+
+  def has_admin?
+    self.admin
+  end
+
 end
+
 
 # == Schema Information
 #
@@ -26,5 +38,6 @@ end
 #  created_at             :datetime
 #  updated_at             :datetime
 #  name                   :string(255)
+#  admin                  :boolean(1)      default(FALSE)
 #
 

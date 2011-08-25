@@ -1,12 +1,12 @@
-require 'spec_helper'
+class ExamLevel < ActiveRecord::Base
 
-describe ExemLevel do
-  pending "add some examples to (or delete) #{__FILE__}"
+  has_many :exam_types
+
 end
 
 # == Schema Information
 #
-# Table name: exem_levels
+# Table name: exam_levels
 #
 #  id         :integer(4)      not null, primary key
 #  level      :integer(4)
