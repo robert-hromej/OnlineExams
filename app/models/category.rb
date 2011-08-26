@@ -1,4 +1,4 @@
-class ExamCategory < ActiveRecord::Base
+class Category < ActiveRecord::Base
 
   has_many :exam_types
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"

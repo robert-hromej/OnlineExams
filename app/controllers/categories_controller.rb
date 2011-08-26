@@ -1,22 +1,22 @@
-class ExamCategoriesController < ApplicationController
+class CategoriesController < ApplicationController
   before_filter :authenticate_user!
 
   before_filter :admin_access!, :only => [:new, :create]
 
   def list
-    @categories = ExamCategory.all
+    @categories = Category.all
   end
 
   def new
-    @category = ExamCategory.new
+    @category = Category.new
   end
 
   def show
-    @category = ExamCategory.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def create
-    @category = ExamCategory.new(params[:exam_category].merge(:owner_id => current_user.id))
+    @category = Category.new(params[:exam_category].merge(:owner_id => current_user.id))
     if @category.save
       flash[:notice] = "Success create Exam Category '#{@category.name}'"
       redirect_to list_exam_categories_path
