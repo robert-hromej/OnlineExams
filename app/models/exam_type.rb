@@ -1,7 +1,6 @@
 class ExamType < ActiveRecord::Base
 
-  belongs_to :level, :class_name => "ExamLevel", :foreign_key => "exam_level_id"
-  belongs_to :category, :class_name => "ExamCategory", :foreign_key => "exam_category_id"
+  belongs_to :category
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   has_many :exams
   has_many :questions

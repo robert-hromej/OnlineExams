@@ -12,11 +12,11 @@ Given /^I am sign in by admin role$/ do
 end
 
 Given /^Create new Exam category '(.*)'$/ do |name|
-  ExamCategory.new(:name => name).save!
+  Category.new(:name => name).save!
 end
 
 Given /^Create new Exam Type '(.*)\((\d+) level\)' for exam category '(.*)'$/ do |exam_name, level, exam_category|
-  category = ExamCategory.find_by_name(exam_category)
+  category = Category.find_by_name(exam_category)
   category.should_not be_nil
   exem_level = ExemLevel.find_by_level(level) || ExemLevel.create(:level => level)
   ExamType.new(:exam_category_id => category.id,

@@ -1,13 +1,13 @@
 class CreateExamCategories < ActiveRecord::Migration
 
   def change
-    create_table :exam_categories do |t|
+    create_table :categories do |t|
       t.string :name
       t.integer :owner_id, :null => false
 
       t.timestamps
     end
-    add_index :exam_categories, :owner_id
+    add_index :categories, :owner_id
   end
 
 end

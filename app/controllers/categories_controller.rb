@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   before_filter :admin_access!, :only => [:new, :create]
 
-  def list
+  def index
     @categories = Category.all
   end
 
@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(params[:category].merge(:owner_id => current_user.id))
     if @category.save
-      flash[:notice] = "Success create Exam Category '#{@category.name}'"
+      flash[:notice] = t('notice.success_create_category', :name => @category.name)
       redirect_to list_categories_path
     else
       # TODO print error messages to web page

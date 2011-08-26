@@ -6,7 +6,7 @@ class AccessLevel < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :exam_type
-  belongs_to :exam_category
+  belongs_to :category
 
 end
 

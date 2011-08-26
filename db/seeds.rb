@@ -1,6 +1,6 @@
 
 User.destroy_all
-ExamCategory.destroy_all
+Category.destroy_all
 ExamType.destroy_all
 
 admin = User.create!(:name => 'admin', :email => 'admin@example.com',
@@ -12,7 +12,7 @@ i_am = User.create!(:name => 'Robert Hromej', :email => 'robert.hromej@gmail.com
                     :password => 'password', :password_confirmation => 'password')
 exam_categories = []
 %w[Ruby Java C++ C# HTML CSS RubyOnRails JavaScript MySQL Ajax JQuery Prototype SCSS ActiveRecord].each do |category|
-  exam_categories << ExamCategory.create!(:name => category, :owner => admin)
+  exam_categories << Category.create!(:name => category, :owner => admin)
 end
 
 exam_categories.each do |exam_category|

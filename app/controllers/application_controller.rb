@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def admin_access!
     unless current_user.has_admin?
-      flash[:error] = "You dont access level to this page"
+      flash[:alert] = t('alert.dont_access_level')
       redirect_to root_path
     end
   end

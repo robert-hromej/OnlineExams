@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(:version => 20110825135039) do
 
   create_table "access_levels", :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.integer  "exam_category_id", :default => 0, :null => false
-    t.integer  "exam_type_id",     :default => 0, :null => false
-    t.integer  "role",             :default => 1, :null => false
+    t.integer  "user_id",                     :null => false
+    t.integer  "category_id",  :default => 0, :null => false
+    t.integer  "exam_type_id", :default => 0, :null => false
+    t.integer  "role",         :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "access_levels", ["user_id", "exam_type_id", "exam_category_id"], :name => "uniq_indexing", :unique => true
+  add_index "access_levels", ["user_id", "exam_type_id", "category_id"], :name => "uniq_indexing", :unique => true
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -33,14 +33,14 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
-  create_table "exam_categories", :force => true do |t|
+  create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "owner_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "exam_categories", ["owner_id"], :name => "index_exam_categories_on_owner_id"
+  add_index "categories", ["owner_id"], :name => "index_categories_on_owner_id"
 
   create_table "exam_questions", :force => true do |t|
     t.integer  "exam_id",     :null => false
@@ -50,16 +50,16 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   end
 
   create_table "exam_types", :force => true do |t|
-    t.string   "name",                              :null => false
-    t.integer  "exam_category_id",                  :null => false
-    t.integer  "owner_id",                          :null => false
-    t.integer  "questions_limit",  :default => 16,  :null => false
-    t.integer  "time_limit",       :default => 960, :null => false
+    t.string   "name",                             :null => false
+    t.integer  "category_id",                      :null => false
+    t.integer  "owner_id",                         :null => false
+    t.integer  "questions_limit", :default => 16,  :null => false
+    t.integer  "time_limit",      :default => 960, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "exam_types", ["exam_category_id"], :name => "index_exam_types_on_exam_category_id"
+  add_index "exam_types", ["category_id"], :name => "index_exam_types_on_category_id"
   add_index "exam_types", ["owner_id"], :name => "index_exam_types_on_owner_id"
 
   create_table "exams", :force => true do |t|

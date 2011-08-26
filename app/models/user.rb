@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  has_many :exam_categories, :foreign_key => "owner_id"
+  has_many :categories, :foreign_key => "owner_id"
   has_many :exam_types, :foreign_key => "owner_id"
   has_many :questions, :foreign_key => "owner_id"
   has_many :exams

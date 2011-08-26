@@ -1,0 +1,6 @@
+en:
+  alert:
+    need_sign_in: "You need to sign in or sign up before continuing."
+    dont_access_level: "You don't access level to this page"
+  notice:
+    success_create_category: "Success create Category '%{name}'"
