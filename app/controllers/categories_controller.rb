@@ -16,10 +16,10 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:exam_category].merge(:owner_id => current_user.id))
+    @category = Category.new(params[:category].merge(:owner_id => current_user.id))
     if @category.save
       flash[:notice] = "Success create Exam Category '#{@category.name}'"
-      redirect_to list_exam_categories_path
+      redirect_to list_categories_path
     else
       # TODO print error messages to web page
       p @category.errors

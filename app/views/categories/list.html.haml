@@ -1,7 +1,7 @@
 - @categories.each do |category|
   = category.id
   \.
-  = link_to category.name, exam_category_path(category.id)
+  = link_to category.name, category_path(category.id)
   %br
 - if admin?
-  = link_to "create new exam category", new_exam_category_path
+  = link_to "create new exam category", new_category_path

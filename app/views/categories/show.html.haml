@@ -3,4 +3,4 @@
 - @category.exam_types.each do |exam_type|
   = exam_type.name
   %br
-= link_to "create new exam type", new_exam_category_exam_type_path(@category.id)
+= link_to "create new exam type", new_category_exam_type_path(@category.id)
