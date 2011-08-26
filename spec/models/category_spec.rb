@@ -5,9 +5,10 @@ describe Category do
 end
 
 
+
 # == Schema Information
 #
-# Table name: exam_categories
+# Table name: categories
 #
 #  id         :integer(4)      not null, primary key
 #  name       :string(255)

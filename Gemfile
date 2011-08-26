@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'annotate', '2.4.0'
 gem "devise", ">= 1.4.2"
+gem "breadcrumbs_on_rails"
 
 group :development, :test do
   gem "rspec-rails", ">= 2.6.1"
@@ -22,11 +23,11 @@ group :development, :test do
   gem "capybara", ">= 1.0.1"
   gem "database_cleaner", ">= 0.6.7"
   gem "launchy", ">= 2.0.5"
+  gem 'webrat', '0.7.1'
+
+  gem 'spork', '0.9.0.rc9'
 
   ## for autotests
   #gem 'autotest'
   #gem 'ZenTest', '4.5.0'
-  ## for spork
-  #gem 'win32-process' # for windows platform
-  #gem 'spork', '0.9.0.rc5'
 end

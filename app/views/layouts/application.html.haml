@@ -9,6 +9,8 @@
     .container
       = render 'layouts/header'
       %section.round
+        = render_breadcrumbs :separator => ' / '
+        %br
         - flash.each do |key, msg|
           = content_tag :div, msg, :id => "flash_#{key}" if msg.is_a?(String)
         = yield

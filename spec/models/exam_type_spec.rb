@@ -10,13 +10,13 @@ end
 #
 # Table name: exam_types
 #
-#  id               :integer(4)      not null, primary key
-#  name             :string(255)     not null
-#  exam_category_id :integer(4)      not null
-#  owner_id         :integer(4)      not null
-#  questions_limit  :integer(4)      default(16), not null
-#  time_limit       :integer(4)      default(960), not null
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id              :integer(4)      not null, primary key
+#  name            :string(255)     not null
+#  category_id     :integer(4)      not null
+#  owner_id        :integer(4)      not null
+#  questions_limit :integer(4)      default(16), not null
+#  time_limit      :integer(4)      default(960), not null
+#  created_at      :datetime
+#  updated_at      :datetime
 #
 

@@ -3,6 +3,8 @@ class ExamTypesController < ApplicationController
 
   before_filter :admin_access!, :only => [:new, :create]
 
+  add_breadcrumb "Categories", "/categories"
+
   def new
     @exam_type = ExamType.new(:category_id => params[:id])
   end
@@ -20,5 +22,12 @@ class ExamTypesController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @exam_type = ExamType.find(params[:id])
+    add_breadcrumb @exam_type.category.name, category_path(@exam_type.category_id)
+    add_breadcrumb @exam_type.name, category_exam_type_path(@exam_type.id)
+  end
+
 
 end

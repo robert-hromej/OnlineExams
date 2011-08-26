@@ -1,7 +1,7 @@
 - @categories.each do |category|
   = category.id
   \.
-  = link_to category.name, category_path(category.id)
+  = link_to category.name, category_path(category.id), :class => "category_link"
   %br
 - if admin?
-  = link_to t('button.create_category'), new_category_path
+  = link_to t('button.create_category'), new_category_path, :class => "create_button"
