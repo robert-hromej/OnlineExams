@@ -8,13 +8,14 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'mysql'
-#gem 'sqlite3'
+#gem 'mysql'
+gem 'sqlite3'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'annotate', '2.4.0'
 gem "devise", ">= 1.4.2"
 gem "breadcrumbs_on_rails"
+gem 'therubyracer' # for linux os
 
 group :development, :test do
   gem "rspec-rails", ">= 2.6.1"

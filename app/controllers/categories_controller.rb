@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_access!, :only => [:new, :create]
+  before_filter :admin_access!, :only => [:new, :create, :edit, :update, :destroy]
 
   add_breadcrumb "Categories", "/categories"
 
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    #  TODO implementation
+    @category = Category.find(params[:id])
   end
 
   def update
