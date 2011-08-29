@@ -6,10 +6,9 @@ class Category < ActiveRecord::Base
 
   validates :name, :presence => true,
             :uniqueness => {:case_sensitive => false},
-            :length => {:within => 1..20}
+            :length => {:within => 1..45}
 
 end
-
 
 
 # == Schema Information

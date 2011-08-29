@@ -25,10 +25,11 @@ group :development, :test do
   gem "database_cleaner", ">= 0.6.7"
   gem "launchy", ">= 2.0.5"
   gem 'webrat', '0.7.1'
+  gem 'test_notifier'
 
   gem 'spork', '0.9.0.rc9'
 
-  ## for autotests
-  #gem 'autotest'
-  #gem 'ZenTest', '4.5.0'
+  ## for autotest
+  gem 'autotest'
+  gem 'ZenTest', '4.5.0'
 end

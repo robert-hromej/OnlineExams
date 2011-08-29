@@ -24,8 +24,7 @@ class CategoriesController < ApplicationController
       flash[:notice] = t('notice.success_create_category', :name => @category.name)
       redirect_to category_path(@category)
     else
-      # TODO print error messages to web page
-      p @category.errors
+      @errors = @category.errors
       add_breadcrumb "New", new_category_path
       render :new
     end
@@ -37,14 +36,22 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    @category.update_attributes(params[:category])
-    flash[:notice] = t('notice.success_update_category', :name => @category.name)
+    @category.name = params[:category][:name]
+    if @category.save
+      flash[:notice] = t('notice.success_update_category', :name => @category.name)
+    else
+      @errors = @category.errors
+    end
     render :show
   end
 
   def destroy
-    category = Category.find(params[:id]).destroy
-    flash[:notice] = t('notice.success_destroy_category', :name => category.name)
+    begin
+      category = Category.find(params[:id]).destroy
+      flash[:notice] = t('notice.success_destroy_category', :name => category.name)
+    rescue
+      flash[:alert] = t('alert.dont_destroy_category', :id => params[:id])
+    end
     redirect_to categories_path
   end
 

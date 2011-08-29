@@ -81,14 +81,15 @@ describe CategoriesController do
 
     it "should not deny access to 'index'" do
       get :index
-      response.should be_success
-      response.should render_template(:index)
+      flash[:alert].should be_blank
+      response.should_not be_redirect
     end
 
     it "should not deny access to 'show'" do
-      get :show, :id => @categories.first.id
-      response.should be_success
-      response.should render_template(:show)
+      category = @categories.first
+      get :show, :id => category.id
+      flash[:alert].should be_blank
+      response.should_not be_redirect
     end
 
     it "should deny access to 'new'" do
@@ -130,20 +131,22 @@ describe CategoriesController do
 
     it "should not be create button" do
       get :index
-      response.should_not have_selector("a", :content => I18n.t('button.create_category'))
+      response.should_not have_selector('.round>a',
+                                        :content => I18n.t('button.create_category'),
+                                        :class => "create_button",
+                                        :href => new_category_path)
     end
 
     it "should be category show page" do
-      @categories.each do |category|
-        get :show, :id => category.id
-        response.should render_template(:show)
-        #response.should have_label("label", :content => category.name) # todo dont work
-        category.exam_types.each do |exam_type|
-          response.should have_selector("a", :content => exam_type.name,
-                                        :href => category_exam_type_path(exam_type.category, exam_type))
-        end
-        response.should_not have_selector("a", :content => I18n.t('button.create_exam_type'))
-      end
+      category = @categories.first
+      get :show, :id => category.id
+      response.should render_template(:show)
+      # TODO move next tests to ExamTypeControlle spec
+      ##response.should have_label("label", :content => category.name) # todo dont work
+      #category.exam_types.each do |exam_type|
+      #  response.should have_selector("a", :content => exam_type.name,
+      #                                :href => category_exam_type_path(exam_type.category, exam_type))
+      #end
     end
 
     describe "I am admin user" do
@@ -155,28 +158,28 @@ describe CategoriesController do
 
       it "should not deny access to 'new'" do
         get :new
-        response.should be_success
-        response.should render_template(:new)
+        flash[:alert].should be_blank
+        response.should_not be_redirect
       end
 
       it "should not deny access to 'create'" do
         post :create, :category => {}
-        response.should be_success
-        response.should render_template(:new)
+        flash[:alert].should be_blank
+        response.should_not be_redirect
       end
 
       it "should not deny access to 'edit'" do
         get :edit, :id => @categories.first.id
-        response.should be_success
-        response.should render_template(:edit)
+        flash[:alert].should be_blank
+        response.should_not be_redirect
       end
 
       it "should not deny access to 'update'" do
         category = @categories.first
         post :update, :category => {}, :id => category.id
-        response.should be_success
         flash[:notice].eql? I18n.t('notice.success_update_category', :name => category.name)
-        response.should render_template(:show)
+        flash[:alert].should be_blank
+        response.should_not be_redirect
       end
 
       it "should not deny access to 'destroy'" do
@@ -184,6 +187,7 @@ describe CategoriesController do
           category = @categories.first
           put :destroy, :id => category.id
           flash[:notice].should.eql? I18n.t('notice.success_destroy_category', :name => category.name)
+          flash[:alert].should be_blank
           response.should redirect_to(categories_path)
         end.should change(Category, :count).by(-1)
       end
@@ -196,8 +200,62 @@ describe CategoriesController do
                                       :href => new_category_path)
       end
 
+      describe "create new category" do
+
+        before(:each) do
+          @attr = {:name => "new category name #{rand(100)}"}
+        end
+
+        it "success" do
+          lambda do
+            post :create, :category => @attr
+            flash[:notice].should.eql? I18n.t('notice.success_create_category', :name => @attr[:name])
+          end.should change(Category, :count).by(1)
+        end
+
+        it "fail" do
+          lambda do
+            post :create, :category => {}
+            assigns[:errors].should_not be_empty
+          end.should_not change(Category, :count).by(1)
+        end
+      end
+
+      describe "edit category" do
+
+        it "success" do
+          category = Category.last
+          old_name = category.name
+          new_name = "new category name"
+          post :update, :category => {:name => new_name}, :id => category.id
+          flash[:notice].should.eql? I18n.t('notice.success_update_category', :name => new_name)
+        end
+
+        it "fail" do
+          category = Category.last
+          post :update, :category => {:name => nil}, :id => category.id
+          assigns[:errors].should_not be_empty
+        end
+      end
+
+      describe "destroy category" do
+
+        it "success" do
+          category = Category.last
+          lambda do
+            put :destroy, :id => category.id
+            flash[:notice].should.eql? I18n.t('notice.success_destroy_category', :name => category.name)
+          end.should change(Category, :count).by(-1)
+        end
+
+        it "fail" do
+          lambda do
+            put :destroy, :id => Category.last.id + 1
+            flash[:alert].should.eql? I18n.t('alert.dont_destroy_category', :id => Category.last.id + 1)
+            response.should redirect_to(categories_path)
+          end.should_not change(Category, :count).by(-1)
+        end
+      end
     end
   end
-
-
 end
