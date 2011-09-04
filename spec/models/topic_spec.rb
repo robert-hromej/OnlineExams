@@ -5,8 +5,6 @@ describe Topic do
 end
 
 
-
-
 # == Schema Information
 #
 # Table name: topics

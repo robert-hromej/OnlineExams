@@ -16,8 +16,6 @@ OnlineExams::Application.routes.draw do
   end
 
 
-
-
   #match "/administration", :to => "admin#index"
 
 end

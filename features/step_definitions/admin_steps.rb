@@ -20,7 +20,7 @@ Given /^Create new Exam Type '(.*)\((\d+) level\)' for exam category '(.*)'$/ do
   category.should_not be_nil
   exem_level = ExemLevel.find_by_level(level) || ExemLevel.create(:level => level)
   Topic.new(:exam_category_id => category.id,
-               :exam_level_id => exam_level.id).save!
+            :exam_level_id => exam_level.id).save!
 end
 
 Given /^Create question '(.*)' for exam '(.*)\((\d+) level\)':$/ do |question, exam_name, level, table|

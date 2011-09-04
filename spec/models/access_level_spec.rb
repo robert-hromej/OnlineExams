@@ -5,7 +5,6 @@ describe AccessLevel do
 end
 
 
-
 # == Schema Information
 #
 # Table name: access_levels

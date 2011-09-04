@@ -1,4 +1,3 @@
-
 User.destroy_all
 Category.destroy_all
 Topic.destroy_all
@@ -19,8 +18,8 @@ exam_categories.each do |exam_category|
   max_level = rand(5)+3
   max_level.times do |i|
     Topic.create!(:name => "#{exam_category.name} core(#{i+1} level)",
-                     :category => exam_category,
-                     :owner => admin)
+                  :category => exam_category,
+                  :owner => admin)
   end
 end
 

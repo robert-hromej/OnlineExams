@@ -11,7 +11,6 @@ class Category < ActiveRecord::Base
 end
 
 
-
 # == Schema Information
 #
 # Table name: categories
