@@ -1,7 +1,7 @@
-class CreateExamTypes < ActiveRecord::Migration
+class CreateTopics < ActiveRecord::Migration
 
   def change
-    create_table :exam_types do |t|
+    create_table :topics do |t|
       t.string :name, :null => false
       t.integer :category_id, :null => false
       t.integer :owner_id, :null => false
@@ -10,8 +10,8 @@ class CreateExamTypes < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :exam_types, :category_id
-    add_index :exam_types, :owner_id
+    add_index :topics, :category_id
+    add_index :topics, :owner_id
   end
 
 end

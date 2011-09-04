@@ -3,11 +3,11 @@ class CreateAccessLevels < ActiveRecord::Migration
     create_table :access_levels do |t|
       t.integer :user_id, :null => false
       t.integer :category_id, :null => false, :default => 0
-      t.integer :exam_type_id, :null => false, :default => 0
+      t.integer :topic_id, :null => false, :default => 0
       t.integer :role, :null => false, :default => AccessLevel::GHOST
 
       t.timestamps
     end
-    add_index :access_levels, [:user_id, :exam_type_id, :category_id], :unique => true, :name => "uniq_indexing"
+    add_index :access_levels, [:user_id, :topic_id, :category_id], :unique => true, :name => "uniq_indexing"
   end
 end

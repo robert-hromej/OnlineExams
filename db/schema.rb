@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(:version => 20110825135039) do
 
   create_table "access_levels", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.integer  "category_id",  :default => 0, :null => false
-    t.integer  "exam_type_id", :default => 0, :null => false
-    t.integer  "role",         :default => 1, :null => false
+    t.integer  "user_id",                    :null => false
+    t.integer  "category_id", :default => 0, :null => false
+    t.integer  "topic_id",    :default => 0, :null => false
+    t.integer  "role",        :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "access_levels", ["user_id", "exam_type_id", "category_id"], :name => "uniq_indexing", :unique => true
+  add_index "access_levels", ["user_id", "topic_id", "category_id"], :name => "uniq_indexing", :unique => true
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -49,7 +49,28 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
     t.datetime "updated_at"
   end
 
-  create_table "exam_types", :force => true do |t|
+  create_table "exams", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "topic_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exams", ["topic_id"], :name => "index_exams_on_topic_id"
+  add_index "exams", ["user_id"], :name => "index_exams_on_user_id"
+
+  create_table "questions", :force => true do |t|
+    t.integer  "owner_id",   :null => false
+    t.integer  "topic_id",   :null => false
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["owner_id"], :name => "index_questions_on_owner_id"
+  add_index "questions", ["topic_id"], :name => "index_questions_on_topic_id"
+
+  create_table "topics", :force => true do |t|
     t.string   "name",                             :null => false
     t.integer  "category_id",                      :null => false
     t.integer  "owner_id",                         :null => false
@@ -59,29 +80,8 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
     t.datetime "updated_at"
   end
 
-  add_index "exam_types", ["category_id"], :name => "index_exam_types_on_category_id"
-  add_index "exam_types", ["owner_id"], :name => "index_exam_types_on_owner_id"
-
-  create_table "exams", :force => true do |t|
-    t.integer  "user_id",      :null => false
-    t.integer  "exam_type_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "exams", ["exam_type_id"], :name => "index_exams_on_exam_type_id"
-  add_index "exams", ["user_id"], :name => "index_exams_on_user_id"
-
-  create_table "questions", :force => true do |t|
-    t.integer  "owner_id",     :null => false
-    t.integer  "exam_type_id", :null => false
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "questions", ["exam_type_id"], :name => "index_questions_on_exam_type_id"
-  add_index "questions", ["owner_id"], :name => "index_questions_on_owner_id"
+  add_index "topics", ["category_id"], :name => "index_topics_on_category_id"
+  add_index "topics", ["owner_id"], :name => "index_topics_on_owner_id"
 
   create_table "user", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false

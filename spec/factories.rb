@@ -19,9 +19,9 @@ Factory.define :category do |category|
   category.association :owner
 end
 
-Factory.define :exam_type do |exam_type|
-  exam_type.name "new exam type"
-  exam_type.association :owner
-  exam_type.association :category
+Factory.define :topic do |topic|
+  topic.name "new exam type"
+  topic.association :owner
+  topic.association :category
 end
 

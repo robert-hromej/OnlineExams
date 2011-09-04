@@ -18,7 +18,7 @@ describe CategoriesController do
     @categories.each do |category|
       max_level = rand(4)+3
       max_level.times do |i|
-        Factory(:exam_type, :owner => @admin_user, :category => category, :name => "#{category.name} core(#{i+1} level)")
+        Factory(:topic, :owner => @admin_user, :category => category, :name => "#{category.name} core(#{i+1} level)")
       end
     end
   end
@@ -141,11 +141,11 @@ describe CategoriesController do
       category = @categories.first
       get :show, :id => category.id
       response.should render_template(:show)
-      # TODO move next tests to ExamTypeControlle spec
+      # TODO move next tests to TopicController spec
       ##response.should have_label("label", :content => category.name) # todo dont work
-      #category.exam_types.each do |exam_type|
-      #  response.should have_selector("a", :content => exam_type.name,
-      #                                :href => category_exam_type_path(exam_type.category, exam_type))
+      #category.topics.each do |topic|
+      #  response.should have_selector("a", :content => topic.name,
+      #                                :href => category_topic_path(topic.category, topic))
       #end
     end
 

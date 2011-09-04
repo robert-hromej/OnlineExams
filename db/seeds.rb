@@ -1,7 +1,7 @@
 
 User.destroy_all
 Category.destroy_all
-ExamType.destroy_all
+Topic.destroy_all
 
 admin = User.create!(:name => 'admin', :email => 'admin@example.com',
                      :password => 'password', :password_confirmation => 'password')
@@ -18,7 +18,7 @@ end
 exam_categories.each do |exam_category|
   max_level = rand(5)+3
   max_level.times do |i|
-    ExamType.create!(:name => "#{exam_category.name} core(#{i+1} level)",
+    Topic.create!(:name => "#{exam_category.name} core(#{i+1} level)",
                      :category => exam_category,
                      :owner => admin)
   end

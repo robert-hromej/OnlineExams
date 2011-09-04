@@ -5,22 +5,34 @@ class AccessLevel < ActiveRecord::Base
   ADMIN = 4
 
   belongs_to :user
-  belongs_to :exam_type
+  belongs_to :topic
   belongs_to :category
 
 end
-
 
 # == Schema Information
 #
 # Table name: access_levels
 #
-#  id           :integer(4)      not null, primary key
-#  user_id      :integer(4)      not null
-#  category_id  :integer(4)      default(0), not null
-#  exam_type_id :integer(4)      default(0), not null
-#  role         :integer(4)      default(1), not null
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id          :integer         not null, primary key
+#  user_id     :integer         not null
+#  category_id :integer         default(0), not null
+#  topic_id    :integer         default(0), not null
+#  role        :integer         default(1), not null
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# == Schema Information
+#
+# Table name: access_levels
+#
+#  id          :integer         not null, primary key
+#  user_id     :integer         not null
+#  category_id :integer         default(0), not null
+#  topic_id    :integer         default(0), not null
+#  role        :integer         default(1), not null
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 

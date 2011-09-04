@@ -12,7 +12,7 @@ OnlineExams::Application.routes.draw do
 
   resources :categories do
     #get :list, :on => :collection
-    resources :exam_types
+    resources :topic
   end
 
 
