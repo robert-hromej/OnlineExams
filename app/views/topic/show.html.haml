@@ -1,1 +1,7 @@
 %h3= @topic.name
+= link_to 'edit', edit_category_topic_path(@topic.category.id, @topic.id)
+%br
+questions:
+= @topic.questions.size
+%br
+= link_to t('button.add_question'), new_topic_question_path(@topic)

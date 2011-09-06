@@ -19,15 +19,3 @@ end
 #  updated_at :datetime
 #
 
-# == Schema Information
-#
-# Table name: questions
-#
-#  id         :integer         not null, primary key
-#  owner_id   :integer         not null
-#  topic_id   :integer         not null
-#  body       :text
-#  created_at :datetime
-#  updated_at :datetime
-#
-

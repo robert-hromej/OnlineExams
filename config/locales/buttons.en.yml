@@ -2,3 +2,4 @@ en:
   button:
     create_category: "Create New Category"
     create_topic: "Create New Exam Type"
+    add_question: "add question"

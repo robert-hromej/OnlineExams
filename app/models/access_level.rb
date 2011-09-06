@@ -23,16 +23,3 @@ end
 #  updated_at  :datetime
 #
 
-# == Schema Information
-#
-# Table name: access_levels
-#
-#  id          :integer         not null, primary key
-#  user_id     :integer         not null
-#  category_id :integer         default(0), not null
-#  topic_id    :integer         default(0), not null
-#  role        :integer         default(1), not null
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-

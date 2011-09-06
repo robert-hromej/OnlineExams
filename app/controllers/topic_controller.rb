@@ -29,5 +29,16 @@ class TopicController < ApplicationController
     add_breadcrumb @topic.name, category_topic_path(@topic.id)
   end
 
+  def edit
+    #   TODO implementation!!!
+  end
+
+  def update
+    #   TODO implementation!!!
+  end
+
+  def destroy
+    #   TODO implementation!!!
+  end
 
 end

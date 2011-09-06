@@ -5,7 +5,6 @@ class ExamQuestion < ActiveRecord::Base
 
 end
 
-
 # == Schema Information
 #
 # Table name: exam_questions

@@ -6,7 +6,6 @@ class Exam < ActiveRecord::Base
 
 end
 
-
 # == Schema Information
 #
 # Table name: exams

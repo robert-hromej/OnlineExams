@@ -10,9 +10,13 @@ OnlineExams::Application.routes.draw do
   resources :user, :only => :show
   resources :admin, :only => :index
 
-  resources :categories do
+  resources :topics, :controller => "topic", :only => [] do
+    resources :question
+  end
+
+  resources :categories, :controller => "category" do
     #get :list, :on => :collection
-    resources :topic
+    resources :topic, :only => [:new, :show, :edit, :create, :update, :destroy]
   end
 
 
