@@ -1,0 +1,6 @@
+%h3= label :name, @category.name
+%br
+- @category.topics.each do |topic|
+  = link_to topic.name, category_topic_path(topic.category,topic)
+  %br
+= link_to "create new exam type", new_category_topic_path(@category.id)
