@@ -9,11 +9,16 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  has_many :categories, :foreign_key => "owner_id"
-  has_many :topics, :foreign_key => "owner_id"
-  has_many :questions, :foreign_key => "owner_id"
   has_many :exams
+
+  has_many :my_categories, :class_name => "Category", :foreign_key => "owner_id"
+  has_many :my_topics, :class_name => "Topic", :foreign_key => "owner_id"
+  has_many :my_questions, :class_name => "Question", :foreign_key => "owner_id"
+
   has_many :access_levels
+  has_many :access_categories, :through => :access_levels, :source => "obj", :source_type => "Category"
+  has_many :access_topics, :through => :access_levels, :source => "obj", :source_type => "Topic"
+  has_many :access_questions, :through => :access_levels, :source => "obj", :source_type => "Question"
 
   def has_admin?
     self.admin

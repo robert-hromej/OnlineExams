@@ -11,6 +11,9 @@ end
 #  id          :integer         not null, primary key
 #  question_id :integer         not null
 #  is_true     :boolean         not null
+#  body        :text
+#  null        :text
+#  false       :text
 #  created_at  :datetime
 #  updated_at  :datetime
 #
