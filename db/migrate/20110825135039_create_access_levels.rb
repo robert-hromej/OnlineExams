@@ -1,13 +1,12 @@
 class CreateAccessLevels < ActiveRecord::Migration
   def change
     create_table :access_levels do |t|
-      t.integer :user_id, :null => false
-      t.integer :category_id, :null => false, :default => 0
-      t.integer :topic_id, :null => false, :default => 0
+      t.belongs_to :obj, :polymorphic => true, :null => false
+      t.references :user, :null => false
       t.integer :role, :null => false, :default => AccessLevel::GHOST
 
       t.timestamps
     end
-    add_index :access_levels, [:user_id, :topic_id, :category_id], :unique => true, :name => "uniq_indexing"
+    add_index :access_levels, [:user_id, :obj_id, :obj_type], :unique => true, :name => "uniq_indexing"
   end
 end

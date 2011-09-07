@@ -2,8 +2,8 @@ class CreateExams < ActiveRecord::Migration
 
   def change
     create_table :exams do |t|
-      t.integer :user_id, :null => false
-      t.integer :topic_id, :null => false
+      t.belongs_to :user, :null => false
+      t.belongs_to :topic, :null => false
 
       t.timestamps
     end
