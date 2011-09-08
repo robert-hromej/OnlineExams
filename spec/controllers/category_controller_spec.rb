@@ -129,6 +129,14 @@ describe CategoryController do
       end
     end
 
+    it "should not be edit link" do
+      category = @categories.first
+      get :show, :id => category.id
+      response.should_not have_link("a",
+                                    :content => I18n.t('button.edit'),
+                                    :href => edit_category_path(category.id))
+    end
+
     it "should not be create button" do
       get :index
       response.should_not have_selector('.round>a',
@@ -190,6 +198,14 @@ describe CategoryController do
           flash[:alert].should be_blank
           response.should redirect_to(categories_path)
         end.should change(Category, :count).by(-1)
+      end
+
+      it "should be edit link" do
+        category = @categories.first
+        get :show, :id => category.id
+        response.should have_selector('a',
+                                      :content => I18n.t('button.edit'),
+                                      :href => edit_category_path(category.id))
       end
 
       it "should by create button" do

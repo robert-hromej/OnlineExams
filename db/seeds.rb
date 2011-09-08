@@ -1,6 +1,8 @@
 User.destroy_all
 Category.destroy_all
 Topic.destroy_all
+Question.destroy_all
+Answer.destroy_all
 
 admin = User.create!(:name => 'admin', :email => 'admin@example.com',
                      :password => 'password', :password_confirmation => 'password')
@@ -9,17 +11,42 @@ admin.save
 
 i_am = User.create!(:name => 'Robert Hromej', :email => 'robert.hromej@gmail.com',
                     :password => 'password', :password_confirmation => 'password')
-exam_categories = []
-%w[Ruby Java C++ C# HTML CSS RubyOnRails JavaScript MySQL Ajax JQuery Prototype SCSS ActiveRecord].each do |category|
-  exam_categories << Category.create!(:name => category, :owner => admin)
+
+#%w[Ruby Java C++ C# HTML CSS RubyOnRails JavaScript MySQL Ajax JQuery Prototype SCSS ActiveRecord].each do |category|
+%w[Ruby Java C++ MySQL].each do |category|
+  Category.create!(:name => category, :owner => admin)
 end
 
-exam_categories.each do |exam_category|
-  max_level = rand(5)+3
+categories = Category.all
+
+categories.each do |category|
+  max_level = 3
   max_level.times do |i|
-    Topic.create!(:name => "#{exam_category.name} core(#{i+1} level)",
-                  :category => exam_category,
+    Topic.create!(:name => "#{category.name} core(#{i+1} level)",
+                  :category => category,
                   :owner => admin)
+  end
+end
+
+topics = Topic.all
+
+topics.each do |topic|
+  question_count = 6
+  question_count.times do |i|
+    Question.create!(:body => "question: a > b ??? #{i+1}",
+                     :topic => topic,
+                     :owner => admin)
+  end
+end
+
+questions = Question.all
+
+questions.each do |question|
+  answer_count = 3
+  answer_count.times do |i|
+    Answer.create!(:body => "it is answer for your question ##{i+1}",
+                   :question => question,
+                   :is_true => rand(7)%2)
   end
 end
 

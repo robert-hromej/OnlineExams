@@ -28,6 +28,20 @@ class Topic < ActiveRecord::Base
     moderator_users + topic.moderator_users + topic.category.moderator_users
   end
 
+  def generate_exam(user)
+    exam = exams.create(:user => user)
+    exam.generate_questions
+  end
+
+  def current_exam
+    exam = self.exams.last
+    if exam.nil? or !exam.active?
+      nil
+    else
+      exam
+    end
+  end
+
 end
 
 # == Schema Information

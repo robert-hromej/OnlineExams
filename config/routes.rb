@@ -8,15 +8,28 @@ OnlineExams::Application.routes.draw do
 
   devise_for :user
   resources :user, :only => :show
+
+  resources :access_levels, :controller => "access_level", :only => [:create, :destroy]
+
   resources :admin, :only => :index
 
-  resources :topics, :controller => "topic", :only => [] do
-    resources :question
-  end
-
-  resources :categories, :controller => "category" do
-    #get :list, :on => :collection
-    resources :topic, :only => [:new, :show, :edit, :create, :update, :destroy]
+  resources :categories, :controller => "category", :shallow => true do
+    resources :topics, :controller => 'topic', :except => [:index] do
+      resources :questions, :controller => "question" do
+        resources :answers, :controller => "answer"
+      end
+      resources :exams, :controller => "exam", :only => [] do
+        member do
+          get :continue
+        end
+        collection do
+          get :start
+        end
+        resources :exam_questions, :controller => "exam_question", :only => [] do
+          resources :question_answers, :controller => "question_answer", :only => [:create]
+        end
+      end
+    end
   end
 
 

@@ -11,8 +11,8 @@
       %section.round
         = render_breadcrumbs :separator => ' / '
         %br
-        - flash.each do |key, msg|
-          = content_tag :div, msg, :id => "flash_#{key}" if msg.is_a?(String)
+        #sys_messages
+          = flash_messages
         = record_errors
         = yield
       = render 'layouts/footer'

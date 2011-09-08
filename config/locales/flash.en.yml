@@ -7,3 +7,5 @@ en:
     success_create_category: "Success create Category: '%{name}'"
     success_update_category: "Success update Category: '%{name}'"
     success_destroy_category: "Success destroy Category: '%{name}'"
+  button:
+    add_question: "add question"

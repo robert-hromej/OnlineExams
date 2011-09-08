@@ -11,22 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110825135039) do
+ActiveRecord::Schema.define(:version => 20110908075635) do
 
   create_table "access_levels", :force => true do |t|
+    t.integer "obj_id", :null => false
+    t.string "obj_type", :null => false
     t.integer "user_id", :null => false
-    t.integer "category_id", :default => 0, :null => false
-    t.integer "topic_id", :default => 0, :null => false
     t.integer "role", :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "access_levels", ["user_id", "topic_id", "category_id"], :name => "uniq_indexing", :unique => true
+  add_index "access_levels", ["user_id", "obj_id", "obj_type"], :name => "uniq_indexing", :unique => true
 
   create_table "answers", :force => true do |t|
     t.integer "question_id", :null => false
     t.boolean "is_true", :null => false
+    t.text "body", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   create_table "exam_questions", :force => true do |t|
     t.integer "exam_id", :null => false
     t.integer "question_id", :null => false
+    t.boolean "answered", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   create_table "exams", :force => true do |t|
     t.integer "user_id", :null => false
     t.integer "topic_id", :null => false
+    t.datetime "finished_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,10 +62,18 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
   add_index "exams", ["topic_id"], :name => "index_exams_on_topic_id"
   add_index "exams", ["user_id"], :name => "index_exams_on_user_id"
 
+  create_table "question_answers", :force => true do |t|
+    t.integer "answer_id", :null => false
+    t.integer "exam_question_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", :force => true do |t|
     t.integer "owner_id", :null => false
     t.integer "topic_id", :null => false
     t.text "body"
+    t.text "answer_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20110825135039) do
     t.integer "category_id", :null => false
     t.integer "owner_id", :null => false
     t.integer "questions_limit", :default => 16, :null => false
-    t.integer "time_limit", :default => 960, :null => false
+    t.integer "time_limit", :default => 16, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

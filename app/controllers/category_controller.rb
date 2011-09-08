@@ -2,7 +2,7 @@ class CategoryController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_access!, :only => [:new, :create, :edit, :update, :destroy]
 
-  add_breadcrumb "Categories", "/categories"
+  before_filter :set_breadcrumb
 
   def index
     @categories = Category.all
@@ -53,6 +53,12 @@ class CategoryController < ApplicationController
       flash[:alert] = t('alert.dont_destroy_category', :id => params[:id])
     end
     redirect_to categories_path
+  end
+
+  private
+
+  def set_breadcrumb
+    add_breadcrumb "Categories", categories_path
   end
 
 end

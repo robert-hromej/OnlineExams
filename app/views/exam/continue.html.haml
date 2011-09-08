@@ -1,0 +1,6 @@
+- @exam.exam_questions.includes(:question).each do |exam_question|
+  = exam_question.question.body
+  .questions
+    .question{:id => "question_#{exam_question.id}"}
+      = render :partial => "/exam_question/question", :locals => {:exam_question => exam_question}
+  %br

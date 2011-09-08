@@ -14,7 +14,7 @@ class TopicController < ApplicationController
     @topic.category_id = params[:category_id]
     @topic.owner = current_user
     if @topic.save
-      flash[:notice] = "Success create Exam Type '#{@topic.name}'"
+      flash[:notice] = "Success create Topic '#{@topic.name}'"
       redirect_to category_path(@topic.category_id)
     else
       # TODO print error messages to web page
@@ -26,7 +26,7 @@ class TopicController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     add_breadcrumb @topic.category.name, category_path(@topic.category_id)
-    add_breadcrumb @topic.name, category_topic_path(@topic.id)
+    add_breadcrumb @topic.name, category_topics_path(@topic.id)
   end
 
   def edit

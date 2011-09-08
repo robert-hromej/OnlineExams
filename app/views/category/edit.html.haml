@@ -1,4 +1,22 @@
 = form_for(@category) do |f|
   = f.label :name
   = f.text_field :name
-  = f.submit "Update"
+  %br
+  %br
+  = f.submit t('button.update')
+  = link_to t('button.cancel'), @category
+
+  %br
+  %br
+Managers:
+%br
+%br
+= form_tag access_levels_path  do
+  = hidden_field_tag :category_id, @category.id
+  email:
+  = text_field_tag :email
+  = submit_tag t('button.add')
+- @category.moderators.each do |user|
+  = link_to user.email, user
+  = button_to "Delete", access_level_path(@category.id, :user_id => user.id), :method => :delete
+  %br

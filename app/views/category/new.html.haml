@@ -3,4 +3,5 @@
   %br/
   = f.text_field :name
   %br/
-  = f.submit "Create"
+  = f.submit t('button.create')
+  = link_to t('button.cancel'), categories_path

@@ -1,7 +1,18 @@
 %h3= @topic.name
-= link_to 'edit', edit_category_topic_path(@topic.category.id, @topic.id)
-%br
-questions:
+= link_to 'edit', edit_topic_path(@topic) if admin?
+all questions:
 = @topic.questions.size
 %br
-= link_to t('button.add_question'), new_topic_question_path(@topic)
+time limit per exam:
+= "#{@topic.time_limit} minutes"
+%br
+questions per exam:
+= @topic.questions_limit
+%br
+- if @topic.current_exam
+  = button_to "current exam", continue_exam_path(@topic.current_exam.id), :method => :get
+-else
+  = button_to "start exam", start_topic_exams_path(@topic.id), :method => :get
+%br
+= link_to t('button.add_question'), new_topic_question_path(@topic) if admin?
+

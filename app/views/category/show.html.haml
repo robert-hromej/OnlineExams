@@ -1,6 +1,8 @@
-%h3= label :name, @category.name
+%h3
+  = label :name, @category.name
+  = link_to t('button.edit'), edit_category_path(@category) if admin?
 %br
 - @category.topics.each do |topic|
-  = link_to topic.name, category_topic_path(topic.category,topic)
+  = link_to topic.name, topic_path(topic.id)
   %br
-= link_to "create new exam type", new_category_topic_path(@category.id)
+= button_to t('button.add_topic'), new_category_topic_path(@category.id), :method => :get if admin?

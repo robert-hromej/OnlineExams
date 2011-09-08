@@ -18,6 +18,14 @@ class Question < ActiveRecord::Base
     owner == user
   end
 
+  def multi_answers?
+    count_trues = 0
+    answers.each do |answer|
+      count_trues += 1 if answer.is_true
+    end
+    count_trues > 1
+  end
+
 end
 
 # == Schema Information

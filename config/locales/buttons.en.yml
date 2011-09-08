@@ -1,5 +1,11 @@
 en:
   button:
+    edit: "edit"
     create_category: "Create New Category"
-    create_topic: "Create New Exam Type"
+    create_topic: "Create New Topic"
     add_question: "add question"
+    add_topic: "add Topic"
+    cancel: "Cancel"
+    create: "Create"
+    update: "Update"
+    add: "Add"
