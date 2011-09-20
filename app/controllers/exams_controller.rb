@@ -1,4 +1,4 @@
-class ExamController < ApplicationController
+class ExamsController < ApplicationController
   before_filter :authenticate_user!
 
   def start

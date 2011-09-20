@@ -6,27 +6,27 @@ OnlineExams::Application.routes.draw do
 
   root :to => "home#index"
 
-  devise_for :user
-  resources :user, :only => :show
+  devise_for :users
+  resources :users, :only => :show
 
-  resources :access_levels, :controller => "access_level", :only => [:create, :destroy]
+  resources :access_levels, :only => [:create, :destroy]
 
   resources :admin, :only => :index
 
-  resources :categories, :controller => "category", :shallow => true do
-    resources :topics, :controller => 'topic', :except => [:index] do
-      resources :questions, :controller => "question" do
-        resources :answers, :controller => "answer"
+  resources :categories, :shallow => true do
+    resources :topics, :except => [:index] do
+      resources :questions do
+        resources :answers
       end
-      resources :exams, :controller => "exam", :only => [] do
+      resources :exams, :only => [] do
         member do
           get :continue
         end
         collection do
           get :start
         end
-        resources :exam_questions, :controller => "exam_question", :only => [] do
-          resources :question_answers, :controller => "question_answer", :only => [:create]
+        resources :exam_questions, :only => [] do
+          resources :question_answers, :only => [:create]
         end
       end
     end

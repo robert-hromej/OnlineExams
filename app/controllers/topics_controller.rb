@@ -1,4 +1,4 @@
-class TopicController < ApplicationController
+class TopicsController < ApplicationController
   before_filter :authenticate_user!
 
   before_filter :admin_access!, :only => [:new, :create]

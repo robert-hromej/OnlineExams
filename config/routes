@@ -2,50 +2,50 @@
                        contact        /contact(.:format)                                           {:controller=>"home", :action=>"contact"}
                           help        /help(.:format)                                              {:controller=>"home", :action=>"help"}
                           root        /                                                            {:controller=>"home", :action=>"index"}
-              new_user_session GET    /user/sign_in(.:format)                                      {:action=>"new", :controller=>"devise/sessions"}
-                  user_session POST   /user/sign_in(.:format)                                      {:action=>"create", :controller=>"devise/sessions"}
-          destroy_user_session GET    /user/sign_out(.:format)                                     {:action=>"destroy", :controller=>"devise/sessions"}
-                 user_password POST   /user/password(.:format)                                     {:action=>"create", :controller=>"devise/passwords"}
-             new_user_password GET    /user/password/new(.:format)                                 {:action=>"new", :controller=>"devise/passwords"}
-            edit_user_password GET    /user/password/edit(.:format)                                {:action=>"edit", :controller=>"devise/passwords"}
-                               PUT    /user/password(.:format)                                     {:action=>"update", :controller=>"devise/passwords"}
-      cancel_user_registration GET    /user/cancel(.:format)                                       {:action=>"cancel", :controller=>"devise/registrations"}
-             user_registration POST   /user(.:format)                                              {:action=>"create", :controller=>"devise/registrations"}
-         new_user_registration GET    /user/sign_up(.:format)                                      {:action=>"new", :controller=>"devise/registrations"}
-        edit_user_registration GET    /user/edit(.:format)                                         {:action=>"edit", :controller=>"devise/registrations"}
-                               PUT    /user(.:format)                                              {:action=>"update", :controller=>"devise/registrations"}
-                               DELETE /user(.:format)                                              {:action=>"destroy", :controller=>"devise/registrations"}
-                          user GET    /user/:id(.:format)                                          {:action=>"show", :controller=>"user"}
-                 access_levels POST   /access_levels(.:format)                                     {:action=>"create", :controller=>"access_level"}
-                  access_level DELETE /access_levels/:id(.:format)                                 {:action=>"destroy", :controller=>"access_level"}
+              new_user_session GET    /users/sign_in(.:format)                                     {:action=>"new", :controller=>"devise/sessions"}
+                  user_session POST   /users/sign_in(.:format)                                     {:action=>"create", :controller=>"devise/sessions"}
+          destroy_user_session GET    /users/sign_out(.:format)                                    {:action=>"destroy", :controller=>"devise/sessions"}
+                 user_password POST   /users/password(.:format)                                    {:action=>"create", :controller=>"devise/passwords"}
+             new_user_password GET    /users/password/new(.:format)                                {:action=>"new", :controller=>"devise/passwords"}
+            edit_user_password GET    /users/password/edit(.:format)                               {:action=>"edit", :controller=>"devise/passwords"}
+                               PUT    /users/password(.:format)                                    {:action=>"update", :controller=>"devise/passwords"}
+      cancel_user_registration GET    /users/cancel(.:format)                                      {:action=>"cancel", :controller=>"devise/registrations"}
+             user_registration POST   /users(.:format)                                             {:action=>"create", :controller=>"devise/registrations"}
+         new_user_registration GET    /users/sign_up(.:format)                                     {:action=>"new", :controller=>"devise/registrations"}
+        edit_user_registration GET    /users/edit(.:format)                                        {:action=>"edit", :controller=>"devise/registrations"}
+                               PUT    /users(.:format)                                             {:action=>"update", :controller=>"devise/registrations"}
+                               DELETE /users(.:format)                                             {:action=>"destroy", :controller=>"devise/registrations"}
+                          user GET    /users/:id(.:format)                                         {:action=>"show", :controller=>"users"}
+                 access_levels POST   /access_levels(.:format)                                     {:action=>"create", :controller=>"access_levels"}
+                  access_level DELETE /access_levels/:id(.:format)                                 {:action=>"destroy", :controller=>"access_levels"}
                    admin_index GET    /admin(.:format)                                             {:action=>"index", :controller=>"admin"}
-              question_answers GET    /questions/:question_id/answers(.:format)                    {:action=>"index", :controller=>"answer"}
-                               POST   /questions/:question_id/answers(.:format)                    {:action=>"create", :controller=>"answer"}
-           new_question_answer GET    /questions/:question_id/answers/new(.:format)                {:action=>"new", :controller=>"answer"}
-                   edit_answer GET    /answers/:id/edit(.:format)                                  {:action=>"edit", :controller=>"answer"}
-                        answer GET    /answers/:id(.:format)                                       {:action=>"show", :controller=>"answer"}
-                               PUT    /answers/:id(.:format)                                       {:action=>"update", :controller=>"answer"}
-                               DELETE /answers/:id(.:format)                                       {:action=>"destroy", :controller=>"answer"}
-               topic_questions GET    /topics/:topic_id/questions(.:format)                        {:action=>"index", :controller=>"question"}
-                               POST   /topics/:topic_id/questions(.:format)                        {:action=>"create", :controller=>"question"}
-            new_topic_question GET    /topics/:topic_id/questions/new(.:format)                    {:action=>"new", :controller=>"question"}
-                 edit_question GET    /questions/:id/edit(.:format)                                {:action=>"edit", :controller=>"question"}
-                      question GET    /questions/:id(.:format)                                     {:action=>"show", :controller=>"question"}
-                               PUT    /questions/:id(.:format)                                     {:action=>"update", :controller=>"question"}
-                               DELETE /questions/:id(.:format)                                     {:action=>"destroy", :controller=>"question"}
-                 continue_exam GET    /exams/:id/continue(.:format)                                {:action=>"continue", :controller=>"exam"}
-             start_topic_exams GET    /topics/:topic_id/exams/start(.:format)                      {:action=>"start", :controller=>"exam"}
-exam_question_question_answers POST   /exam_questions/:exam_question_id/question_answers(.:format) {:action=>"create", :controller=>"question_answer"}
-               category_topics POST   /categories/:category_id/topics(.:format)                    {:action=>"create", :controller=>"topic"}
-            new_category_topic GET    /categories/:category_id/topics/new(.:format)                {:action=>"new", :controller=>"topic"}
-                    edit_topic GET    /topics/:id/edit(.:format)                                   {:action=>"edit", :controller=>"topic"}
-                         topic GET    /topics/:id(.:format)                                        {:action=>"show", :controller=>"topic"}
-                               PUT    /topics/:id(.:format)                                        {:action=>"update", :controller=>"topic"}
-                               DELETE /topics/:id(.:format)                                        {:action=>"destroy", :controller=>"topic"}
-                    categories GET    /categories(.:format)                                        {:action=>"index", :controller=>"category"}
-                               POST   /categories(.:format)                                        {:action=>"create", :controller=>"category"}
-                  new_category GET    /categories/new(.:format)                                    {:action=>"new", :controller=>"category"}
-                 edit_category GET    /categories/:id/edit(.:format)                               {:action=>"edit", :controller=>"category"}
-                      category GET    /categories/:id(.:format)                                    {:action=>"show", :controller=>"category"}
-                               PUT    /categories/:id(.:format)                                    {:action=>"update", :controller=>"category"}
-                               DELETE /categories/:id(.:format)                                    {:action=>"destroy", :controller=>"category"}
+              question_answers GET    /questions/:question_id/answers(.:format)                    {:action=>"index", :controller=>"answers"}
+                               POST   /questions/:question_id/answers(.:format)                    {:action=>"create", :controller=>"answers"}
+           new_question_answer GET    /questions/:question_id/answers/new(.:format)                {:action=>"new", :controller=>"answers"}
+                   edit_answer GET    /answers/:id/edit(.:format)                                  {:action=>"edit", :controller=>"answers"}
+                        answer GET    /answers/:id(.:format)                                       {:action=>"show", :controller=>"answers"}
+                               PUT    /answers/:id(.:format)                                       {:action=>"update", :controller=>"answers"}
+                               DELETE /answers/:id(.:format)                                       {:action=>"destroy", :controller=>"answers"}
+               topic_questions GET    /topics/:topic_id/questions(.:format)                        {:action=>"index", :controller=>"questions"}
+                               POST   /topics/:topic_id/questions(.:format)                        {:action=>"create", :controller=>"questions"}
+            new_topic_question GET    /topics/:topic_id/questions/new(.:format)                    {:action=>"new", :controller=>"questions"}
+                 edit_question GET    /questions/:id/edit(.:format)                                {:action=>"edit", :controller=>"questions"}
+                      question GET    /questions/:id(.:format)                                     {:action=>"show", :controller=>"questions"}
+                               PUT    /questions/:id(.:format)                                     {:action=>"update", :controller=>"questions"}
+                               DELETE /questions/:id(.:format)                                     {:action=>"destroy", :controller=>"questions"}
+                 continue_exam GET    /exams/:id/continue(.:format)                                {:action=>"continue", :controller=>"exams"}
+             start_topic_exams GET    /topics/:topic_id/exams/start(.:format)                      {:action=>"start", :controller=>"exams"}
+exam_question_question_answers POST   /exam_questions/:exam_question_id/question_answers(.:format) {:action=>"create", :controller=>"question_answers"}
+               category_topics POST   /categories/:category_id/topics(.:format)                    {:action=>"create", :controller=>"topics"}
+            new_category_topic GET    /categories/:category_id/topics/new(.:format)                {:action=>"new", :controller=>"topics"}
+                    edit_topic GET    /topics/:id/edit(.:format)                                   {:action=>"edit", :controller=>"topics"}
+                         topic GET    /topics/:id(.:format)                                        {:action=>"show", :controller=>"topics"}
+                               PUT    /topics/:id(.:format)                                        {:action=>"update", :controller=>"topics"}
+                               DELETE /topics/:id(.:format)                                        {:action=>"destroy", :controller=>"topics"}
+                    categories GET    /categories(.:format)                                        {:action=>"index", :controller=>"categories"}
+                               POST   /categories(.:format)                                        {:action=>"create", :controller=>"categories"}
+                  new_category GET    /categories/new(.:format)                                    {:action=>"new", :controller=>"categories"}
+                 edit_category GET    /categories/:id/edit(.:format)                               {:action=>"edit", :controller=>"categories"}
+                      category GET    /categories/:id(.:format)                                    {:action=>"show", :controller=>"categories"}
+                               PUT    /categories/:id(.:format)                                    {:action=>"update", :controller=>"categories"}
+                               DELETE /categories/:id(.:format)                                    {:action=>"destroy", :controller=>"categories"}

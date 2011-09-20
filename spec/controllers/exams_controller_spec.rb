@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ExamController do
+describe ExamsController do
 
 end

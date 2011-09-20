@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TopicController do
+describe TopicsController do
 
   before(:each) do
     @user = Factory(:user)
